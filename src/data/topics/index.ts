@@ -1,24 +1,24 @@
 import { introduction } from './introduction';
-import { processes } from './processes';
+import { processManagementTopic } from './processes';
 import { memory } from './memory';
 import { fileSystems } from './fileSystems';
 import { Topic } from '../types';
 
 // Export individual topics for direct access
-export { introduction, processes, memory, fileSystems };
+export { introduction, processManagementTopic, memory, fileSystems };
 
 // Export all topics as an array (maintains backward compatibility)
 export const osTopics: Topic[] = [
-  introduction,
-  processes,
-  memory,
-  fileSystems
+  // introduction,
+  processManagementTopic,
+  // memory,
+  // fileSystems
 ];
 
 // Export topics as an object for easy lookup by ID
 export const topicsById = {
   introduction,
-  processes,
+  processManagementTopic,
   memory,
   'file-systems': fileSystems
 };

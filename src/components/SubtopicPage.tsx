@@ -139,6 +139,7 @@ const SubtopicPage: React.FC<SubtopicPageProps> = ({ subtopic, topic }) => {
       {/* MCQ Quiz */}
       {subtopic.quiz && (
         <MCQQuiz 
+          key={`${topic.id}-${subtopic.id}`}
           questions={subtopic.quiz} 
           title={`${subtopic.title} Quiz`}
         />

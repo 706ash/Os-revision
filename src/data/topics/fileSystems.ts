@@ -28,6 +28,7 @@ export const fileSystems: Topic = {
         },
         {
           type: 'list',
+          content: 'File Attributes List',
           items: [
             'Name: Human-readable identifier',
             'Type: File format and content type',
@@ -61,6 +62,7 @@ export const fileSystems: Topic = {
         },
         {
           type: 'list',
+          content: 'Directory Types List',
           items: [
             'Single-level: All files in one directory',
             'Two-level: Separate directory for each user',
