@@ -1,275 +1,251 @@
 import { Topic } from '../types';
 
 export const introduction: Topic = {
-  id: 'introduction',
+  id: 'intro-os',
   title: 'Introduction to Operating Systems',
-  description: 'Fundamental concepts, history, and basic principles of operating systems.',
-  overview: 'An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs. It acts as an intermediary between users and computer hardware.',
+  description: 'Fundamental overview of what an operating system is, its structure, what it does, services provided, and a brief look at system calls.',
+  overview: 'Operating systems are the interface between the user and computer hardware. They manage hardware resources, provide services for application programs, and ensure secure and efficient execution. This topic gives you a tour of basic OS responsibilities, structure, services, and the role of system calls.',
   objectives: [
-    'Understand what an operating system is and its primary functions',
-    'Learn about different types of operating systems',
-    'Explore the evolution and history of operating systems',
-    'Identify the main components of an operating system'
+    'Define what an operating system is',
+    'Understand the basic structure of an OS',
+    'Identify the services provided by an OS',
+    'Describe what system calls are and why they are needed'
   ],
   quiz: [
-    'What are the main functions of an operating system?',
-    'How does an OS manage system resources?',
-    'What is the difference between system software and application software?'
+    'What is an operating system?',
+    'Name three services an OS provides.',
+    'Why are system calls important?'
   ],
   subtopics: [
     {
-      id: 'definition',
-      title: 'What is an Operating System?',
-      description: 'Basic definition and core concepts of operating systems.',
-      duration: '15 minutes',
+      id: 'what-os-does',
+      title: 'What an Operating System Does',
+      description: 'Introduction to the role of an OS in a computer system.',
+      duration: '10 minutes',
       content: [
         {
           type: 'paragraph',
-          content: 'An Operating System (OS) is a collection of software that manages computer hardware resources and provides a platform for other software to run. It serves as an interface between the user and the computer hardware.'
-        },
-        {
-          type: 'heading',
-          content: 'Key Functions of an Operating System'
+          content: 'An operating system is software that acts as an intermediary between users and computer hardware. It manages hardware resources and provides an environment for application programs.'
         },
         {
           type: 'list',
+          content: 'Major OS responsibilities',
           items: [
-            'Process Management - Creating, scheduling, and terminating processes',
-            'Memory Management - Allocating and deallocating memory space',
-            'File System Management - Organizing and managing files and directories',
-            'Device Management - Controlling and coordinating hardware devices',
-            'Security and Access Control - Protecting system resources',
-            'User Interface - Providing a way for users to interact with the system'
+            'Resource allocation',
+            'Program execution',
+            'I/O operations control',
+            'File system management',
+            'Error detection and handling',
+            'Security and protection'
           ]
         },
         {
           type: 'note',
-          content: 'Think of an OS as a government that manages resources, enforces rules, and provides services to citizens (applications and users).'
+          content: 'The OS acts as both a resource allocator and a control program.'
+        }
+      ],
+      keyPoints: [
+        'OS controls and coordinates hardware use',
+        'Provides a stable environment for applications',
+        'Acts like a government for the computer'
+      ],
+      quiz: [
+        {
+          id: 'whatosdoes-q1',
+          question: 'Which of the following best describes an operating system?',
+          options: [
+            { id: 'a', text: 'Application software that performs user-specific tasks', isCorrect: false },
+            { id: 'b', text: 'Hardware component that runs programs', isCorrect: false },
+            { id: 'c', text: 'Software that manages hardware and provides services for programs', isCorrect: true },
+            { id: 'd', text: 'A user-written program for data processing', isCorrect: false }
+          ],
+          explanation: 'The OS acts as an intermediary between users and hardware, managing resources and services.'
+        },
+        {
+          id: 'whatosdoes-q2',
+          question: 'Which of these is NOT a main function of an OS?',
+          options: [
+            { id: 'a', text: 'Resource allocation', isCorrect: false },
+            { id: 'b', text: 'Program execution', isCorrect: false },
+            { id: 'c', text: 'Hardware manufacturing', isCorrect: true },
+            { id: 'd', text: 'File system management', isCorrect: false }
+          ],
+          explanation: 'The OS does not manufacture hardware; it controls and coordinates hardware use.'
+        }
+      ]
+    },
+    {
+      id: 'os-structure',
+      title: 'Operating System Structure',
+      description: 'How operating systems are structured internally.',
+      duration: '10 minutes',
+      content: [
+        {
+          type: 'paragraph',
+          content: 'Operating systems are large and complex, so they are structured in layers or modules. Typical structures include simple monolithic kernels, layered systems, and microkernels.'
+        },
+        {
+          type: 'list',
+          content: 'Common OS structures',
+          items: [
+            'Monolithic systems',
+            'Layered approach',
+            'Microkernel approach',
+            'Modules and hybrid systems'
+          ]
+        },
+        {
+          type: 'note',
+          content: 'Modern operating systems like Linux and Windows use modular hybrid approaches.'
+        }
+      ],
+      keyPoints: [
+        'Good structure simplifies design and maintenance',
+        'Microkernels move services out of the kernel for better modularity',
+        'Hybrid systems combine multiple approaches'
+      ],
+      quiz: [
+        {
+          id: 'osstructure-q1',
+          question: 'What is the benefit of a layered OS structure?',
+          options: [
+            { id: 'a', text: 'Simplifies design and debugging', isCorrect: true },
+            { id: 'b', text: 'Eliminates the need for hardware', isCorrect: false },
+            { id: 'c', text: 'Increases complexity unnecessarily', isCorrect: false },
+            { id: 'd', text: 'Prevents modular development', isCorrect: false }
+          ],
+          explanation: 'Layered design makes the OS easier to design, maintain, and debug.'
+        },
+        {
+          id: 'osstructure-q2',
+          question: 'Which of these is a type of OS structure?',
+          options: [
+            { id: 'a', text: 'Microkernel', isCorrect: true },
+            { id: 'b', text: 'Megaprocessor', isCorrect: false },
+            { id: 'c', text: 'Pipeline kernel', isCorrect: false },
+            { id: 'd', text: 'Static scheduler', isCorrect: false }
+          ],
+          explanation: 'Microkernel is a known OS structure where basic services run in user space.'
+        }
+      ]
+    },
+    {
+      id: 'os-services',
+      title: 'Operating System Services',
+      description: 'Core services provided by an operating system.',
+      duration: '10 minutes',
+      content: [
+        {
+          type: 'paragraph',
+          content: 'Operating systems provide various services to users and programs. These services make the programming process easier and execution more reliable.'
+        },
+        {
+          type: 'list',
+          content: 'Key OS services',
+          items: [
+            'Program execution',
+            'I/O operations',
+            'File-system manipulation',
+            'Communications',
+            'Error detection',
+            'Resource allocation',
+            'Accounting',
+            'Protection and security'
+          ]
         },
         {
           type: 'image',
-          src: 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=800',
-          alt: 'Operating System Architecture Diagram',
-          caption: 'Conceptual view of how an operating system manages system resources',
+          content: 'Illustration of OS services',
+          src: '/images/os_concept.png',
+          alt: 'Diagram showing various operating system services',
+          caption: 'A conceptual diagram of core operating system services',
           width: '100%'
         }
       ],
       keyPoints: [
-        'OS acts as a resource manager and interface',
-        'Provides abstraction over hardware complexity',
-        'Enables multiple programs to run concurrently',
-        'Manages system security and access control'
+        'Services simplify user tasks',
+        'Provide standard interfaces to hardware',
+        'Improve efficiency and protection'
       ],
       quiz: [
         {
-          id: 'q1',
-          question: 'What is the primary function of an operating system?',
+          id: 'osservices-q1',
+          question: 'Which service helps users execute programs conveniently?',
           options: [
-            { id: 'a', text: 'To run applications only', isCorrect: false },
-            { id: 'b', text: 'To manage hardware and software resources', isCorrect: true },
-            { id: 'c', text: 'To provide internet connectivity', isCorrect: false },
-            { id: 'd', text: 'To store files permanently', isCorrect: false }
+            { id: 'a', text: 'Program execution', isCorrect: true },
+            { id: 'b', text: 'Error logging', isCorrect: false },
+            { id: 'c', text: 'Hardware manufacturing', isCorrect: false },
+            { id: 'd', text: 'Data encryption', isCorrect: false }
           ],
-          explanation: 'The primary function of an OS is to manage both hardware and software resources, acting as an intermediary between users and computer hardware.'
+          explanation: 'Program execution is a key OS service for running applications.'
         },
         {
-          id: 'q2',
-          question: 'Which of the following is NOT a core function of an operating system?',
+          id: 'osservices-q2',
+          question: 'Which OS service deals with ensuring data is protected and secure?',
           options: [
-            { id: 'a', text: 'Process Management', isCorrect: false },
-            { id: 'b', text: 'Memory Management', isCorrect: false },
-            { id: 'c', text: 'Web Browsing', isCorrect: true },
-            { id: 'd', text: 'File System Management', isCorrect: false }
+            { id: 'a', text: 'Resource allocation', isCorrect: false },
+            { id: 'b', text: 'File system manipulation', isCorrect: false },
+            { id: 'c', text: 'Protection and security', isCorrect: true },
+            { id: 'd', text: 'Device driver installation', isCorrect: false }
           ],
-          explanation: 'Web browsing is an application function, not a core OS function. The OS provides the platform for web browsers to run.'
+          explanation: 'Protection and security services prevent unauthorized access and maintain integrity.'
         }
       ]
     },
     {
-      id: 'types',
-      title: 'Types of Operating Systems',
-      description: 'Classification of operating systems based on various criteria.',
-      duration: '20 minutes',
+      id: 'system-calls',
+      title: 'System Calls Overview',
+      description: 'Introduction to system calls and their importance in operating systems.',
+      duration: '10 minutes',
       content: [
         {
           type: 'paragraph',
-          content: 'Operating systems can be classified based on various criteria such as user interface, number of users, number of tasks, and system structure.'
-        },
-        {
-          type: 'heading',
-          content: 'Based on User Interface'
+          content: 'System calls are the interface between applications and the operating system kernel. They allow applications to request services from the OS, such as memory allocation, process creation, and device access.'
         },
         {
           type: 'list',
+          content: 'Common system calls',
           items: [
-            'Command Line Interface (CLI) - Text-based interaction',
-            'Graphical User Interface (GUI) - Visual interaction with windows, icons, and menus',
-            'Touch Interface - Gesture-based interaction for mobile devices'
+            'Process control (fork, exec, wait)',
+            'Memory management (malloc, free, mmap)',
+            'File operations (open, read, write, close)',
+            'Device management (I/O, file, network)',
+            'Communication (socket, pipe, message queue)'
           ]
         },
         {
-          type: 'heading',
-          content: 'Based on Number of Users'
-        },
-        {
-          type: 'list',
-          items: [
-            'Single-user OS - Supports one user at a time (e.g., MS-DOS, early Windows)',
-            'Multi-user OS - Supports multiple users simultaneously (e.g., Unix, Linux, Windows Server)'
-          ]
-        },
-        {
-          type: 'heading',
-          content: 'Based on Number of Tasks'
-        },
-        {
-          type: 'list',
-          items: [
-            'Single-tasking - Runs one program at a time',
-            'Multi-tasking - Runs multiple programs concurrently',
-            'Multi-threading - Supports multiple threads within programs'
-          ]
+          type: 'note',
+          content: 'System calls are essential for application development and interaction with the OS.'
         }
       ],
       keyPoints: [
-        'Classification helps understand OS capabilities',
-        'Modern OS typically support multi-user and multi-tasking',
-        'User interface type affects user experience',
-        'System requirements vary based on OS type'
+        'System calls are the OS interface for applications',
+        'They enable applications to request OS services',
+        'They are crucial for application development and interaction'
       ],
-      questions: [
-        'What are the advantages of a GUI over a CLI?',
-        'When would you choose a single-user OS over a multi-user OS?',
-        'How does multi-tasking improve system efficiency?'
-      ]
-    },
-    {
-      id: 'history',
-      title: 'History and Evolution',
-      description: 'Timeline of operating system development from early computers to modern systems.',
-      duration: '25 minutes',
-      content: [
+      quiz: [
         {
-          type: 'paragraph',
-          content: 'The evolution of operating systems closely follows the development of computer hardware, from simple batch processing systems to complex distributed systems.'
+          id: 'syscalls-q1',
+          question: 'What is a system call?',
+          options: [
+            { id: 'a', text: 'A hardware device', isCorrect: false },
+            { id: 'b', text: 'A programming interface to request OS services', isCorrect: true },
+            { id: 'c', text: 'A user command in a shell', isCorrect: false },
+            { id: 'd', text: 'A software bug', isCorrect: false }
+          ],
+          explanation: 'System calls provide an interface for user programs to request OS services.'
         },
         {
-          type: 'heading',
-          content: '1940s-1950s: First Generation'
-        },
-        {
-          type: 'list',
-          items: [
-            'No operating systems - direct machine language programming',
-            'Programmers operated machines directly',
-            'Jobs were run one at a time manually'
-          ]
-        },
-        {
-          type: 'heading',
-          content: '1950s-1960s: Second Generation'
-        },
-        {
-          type: 'list',
-          items: [
-            'Batch processing systems introduced',
-            'Jobs collected and processed in batches',
-            'Reduced setup time and increased efficiency'
-          ]
-        },
-        {
-          type: 'heading',
-          content: '1960s-1980s: Third Generation'
-        },
-        {
-          type: 'list',
-          items: [
-            'Multiprogramming and time-sharing systems',
-            'Interactive computing became possible',
-            'UNIX operating system developed'
-          ]
-        },
-        {
-          type: 'heading',
-          content: '1980s-Present: Fourth Generation'
-        },
-        {
-          type: 'list',
-          items: [
-            'Personal computers and GUIs',
-            'Network and distributed operating systems',
-            'Mobile and embedded systems',
-            'Cloud and virtualization technologies'
-          ]
+          id: 'syscalls-q2',
+          question: 'Which of these is a common type of system call?',
+          options: [
+            { id: 'a', text: 'Spreadsheet calculation', isCorrect: false },
+            { id: 'b', text: 'File manipulation', isCorrect: true },
+            { id: 'c', text: 'Power supply control', isCorrect: false },
+            { id: 'd', text: 'Syntax highlighting', isCorrect: false }
+          ],
+          explanation: 'File manipulation (open, read, write) is a basic system call category.'
         }
-      ],
-      keyPoints: [
-        'OS evolution driven by hardware advancement',
-        'Each generation solved limitations of previous systems',
-        'Modern OS incorporate features from all generations',
-        'Current trends focus on mobility and cloud computing'
-      ]
-    },
-    {
-      id: 'components',
-      title: 'OS Components and Structure',
-      description: 'Main components of an operating system and how they work together.',
-      duration: '30 minutes',
-      content: [
-        {
-          type: 'paragraph',
-          content: 'An operating system consists of several key components that work together to provide a complete computing environment. Understanding these components helps in grasping how an OS functions.'
-        },
-        {
-          type: 'heading',
-          content: 'Kernel'
-        },
-        {
-          type: 'paragraph',
-          content: 'The kernel is the core component of an OS that has complete control over system resources. It manages memory, processes, device drivers, and system calls.'
-        },
-        {
-          type: 'code',
-          language: 'c',
-          content: `// Example of a system call interface
-#include <sys/types.h>
-#include <unistd.h>
-
-int main() {
-    pid_t process_id = getpid();  // Get current process ID
-    return 0;
-}`
-        },
-        {
-          type: 'heading',
-          content: 'System Libraries'
-        },
-        {
-          type: 'list',
-          items: [
-            'Provide interface between applications and kernel',
-            'Implement common functions used by multiple programs',
-            'Examples: C library (libc), graphics libraries'
-          ]
-        },
-        {
-          type: 'heading',
-          content: 'System Utilities'
-        },
-        {
-          type: 'list',
-          items: [
-            'Command-line tools and GUI applications',
-            'File managers, text editors, compilers',
-            'System configuration and monitoring tools'
-          ]
-        }
-      ],
-      keyPoints: [
-        'Kernel provides core OS functionality',
-        'System libraries bridge applications and kernel',
-        'Utilities provide user-facing functionality',
-        'All components work together as a unified system'
       ]
     }
   ]

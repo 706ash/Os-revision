@@ -9,7 +9,7 @@ export { introduction, processManagementTopic, memory, fileSystems };
 
 // Export all topics as an array (maintains backward compatibility)
 export const osTopics: Topic[] = [
-  // introduction,
+  introduction,
   processManagementTopic,
   // memory,
   // fileSystems
